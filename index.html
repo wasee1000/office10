@@ -313,8 +313,20 @@
 
         function createProjectCard(project) {
             const div = document.createElement('div');
-            div.className = 'bg-white rounded-lg shadow project-card p-6';
-            
+            // Color coding for card background based on status
+            let cardBg = 'bg-white';
+            if (project.status === 'on-track') cardBg = 'bg-green-50';
+            else if (project.status === 'at-risk') cardBg = 'bg-yellow-50';
+            else if (project.status === 'behind') cardBg = 'bg-red-50';
+
+            // Border color for priority
+            let borderColor = 'border-gray-200';
+            if (project.priority === 'high') borderColor = 'border-red-400';
+            else if (project.priority === 'medium') borderColor = 'border-yellow-400';
+            else if (project.priority === 'low') borderColor = 'border-green-400';
+
+            div.className = `${cardBg} border ${borderColor} rounded-lg shadow project-card p-6`;
+
             const statusColor = {
                 'on-track': 'bg-green-100 text-green-800',
                 'at-risk': 'bg-yellow-100 text-yellow-800',
